@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>주민등록번호 유효성 체크 프로그램</title>
+</head>
+<body>
+    <h2>주민등록번호 유효성 체크 프로그램</h2>
+    <script>
+        'use strict'
+
+        let IDnum 
+
+        function ask(){
+            IDnum = prompt('주민등록번호를 입력해주세요(-제외)');
+        
+            if(IDnum.length !== 13){
+                alert('주민등록번호를 정확히 입력해주세요.');
+                ask();
+            }
+        }
+        ask();
+
+
+
+        const divIDnum = (IDnum.split(''));
+        console.log(divIDnum);
+
+
+
+        const particularNum = [2, 3, 4, 5, 6, 7, 8, 9, 2, 3, 4, 5];
+
+
+
+        let sumIDnum = [];
+
+
+        for(let i in divIDnum){
+            for(let j in particularNum){
+                if(i === j){
+                    sumIDnum.push(Number(divIDnum[i]) * Number(particularNum[j]));
+                }else{
+                    continue;
+                }
+            }
+        }
+        console.log(sumIDnum);
+
+
+
+        let sum = 0;
+        for(let i in sumIDnum){
+            sum += sumIDnum[i];
+        }
+        console.log(sum);
+
+
+
+        sum = sum % 11;
+        console.log(sum);
+
+
+
+        sum = 11 - sum;
+        if(sum > 9){
+            sum = sum % 10;
+        }
+        console.log(sum);
+
+
+
+        let checkNum = Number(IDnum[12]); 
+        if(sum === checkNum){
+            alert('주민등록번호가 확인되었습니다!');
+        }else{
+            alert('유효한 주민등록번호가 아닙니다. 다시 입력해주세요');
+            askIDnum();
+        }
+
+    </script>
+</body>
+</html>
